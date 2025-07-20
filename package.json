@@ -1,0 +1,30 @@
+{
+  "name": "word-masters",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Taofeekabdulazeez/word-masters#readme",
+  "bugs": {
+    "url": "https://github.com/Taofeekabdulazeez/word-masters/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taofeekabdulazeez/word-masters.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx tsc && node dist/bot.js"
+  },
+  "dependencies": {
+    "cron": "^4.3.2",
+    "dotenv": "^17.2.0",
+    "grammy": "^1.37.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.15",
+    "typescript": "^5.8.3"
+  }
+}
