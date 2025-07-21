@@ -19,12 +19,18 @@ const job = new CronJob(
   () => {
     setTimeout(
       () =>
-        bot.api.sendMessage(ROOM_CHAT_ID, "This round will end in 60 seconds."),
+        bot.api.sendMessage(
+          ROOM_CHAT_ID,
+          "⏳ This round will end in 60 seconds."
+        ),
       Delay.THIRTY_SECONDS
     );
     setTimeout(
       () =>
-        bot.api.sendMessage(ROOM_CHAT_ID, "This round will end in 30 seconds."),
+        bot.api.sendMessage(
+          ROOM_CHAT_ID,
+          "⏳ This round will end in 30 seconds."
+        ),
       Delay.ONE_MINUTE
     );
 
@@ -34,44 +40,54 @@ const job = new CronJob(
       if (players.length === 0) {
         bot.api.sendMessage(
           ROOM_CHAT_ID,
-          "This round has ended.\nNo players participated in this round."
+          "⚠️ This round has ended.\nNo players participated in this round."
         );
         return;
       }
       const topPlayers = playersService.getRoundTopPlayers();
+
       const resultMessage = topPlayers
-        .map(
-          (player, index) =>
-            `${index + 1}. ${player.getName()} - ${player.getPoints()} points`
-        )
+        .map((player, index) => {
+          const name = player.getName();
+          const points = player.getPoints();
+          const userId = player.id;
+          return `${
+            index + 1
+          }. <a href="tg://user?id=${userId}">${name}</a> - ${points} points`;
+        })
         .join("\n");
+
       bot.api.sendMessage(
         ROOM_CHAT_ID,
-        `This round has ended.\nTop players:\n${resultMessage}`
+        `🏁 <b>This round has ended!</b>\n\n🏆 <b>Top Players:</b>\n\n${resultMessage}`,
+        { parse_mode: "HTML" }
       );
     }, Delay.NINETY_SECONDS);
 
     setTimeout(() => {
       bot.api.sendMessage(
         ROOM_CHAT_ID,
-        "The next round will start in 10 seconds."
+        "⏱️ The next round will start in 15 seconds."
       );
-    }, 100 * 1000);
+    }, 105 * 1000);
 
     gameService.setStatus("active");
     wordsService.resetWords();
     wordsService.clearGuessedWords();
     playersService.clearPlayers();
 
-    const botMessage = `Round has started. words are: ${wordsService.getWords()}`;
-    console.log("players", playersService.getPlayers());
+    const botMessage = `🚀 Round has started!\nWords are: <b>${wordsService.getWords()}</b>`;
 
     console.log(botMessage);
-    bot.api.sendMessage(ROOM_CHAT_ID, botMessage).then((message) => {
-      bot.api.pinChatMessage(ROOM_CHAT_ID, message.message_id, {
-        disable_notification: true,
+    bot.api
+      .sendMessage(ROOM_CHAT_ID, botMessage, {
+        parse_mode: "HTML",
+      })
+      .then((message) => {
+        bot.api.pinChatMessage(ROOM_CHAT_ID, message.message_id, {
+          disable_notification: true,
+        });
       });
-    });
   },
   null,
   false,
