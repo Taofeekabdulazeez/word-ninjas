@@ -1,5 +1,8 @@
 export class WordsService {
-  private words: Array<string> = [
+  private guessedWords: string[] = [];
+  private words: string = "";
+
+  private anagramWords: Array<string> = [
     "master joners",
     "premables lenters",
     "silent danger",
@@ -14,12 +17,12 @@ export class WordsService {
   ];
 
   public getRandomWord(): string {
-    const index = Math.floor(Math.random() * this.words.length);
-    return this.words[index];
+    const index = Math.floor(Math.random() * this.anagramWords.length);
+    return this.anagramWords[index];
   }
 
-  public isAnagram(str: string, words: string) {
-    if (!str.length || !words.length) return false;
+  public isAnagram(str: string) {
+    if (!str.length || !this.words.length) return false;
 
     const strFreq: Record<string, number> = {};
 
@@ -30,7 +33,7 @@ export class WordsService {
 
     const wordsFreq: Record<string, number> = {};
 
-    for (const w of words.toLowerCase()) {
+    for (const w of this.words.toLowerCase()) {
       if (wordsFreq[w]) wordsFreq[w] += 1;
       else wordsFreq[w] = 1;
     }
@@ -40,5 +43,29 @@ export class WordsService {
     }
 
     return true;
+  }
+
+  public addGuessedWord(word: string) {
+    this.guessedWords.push(word);
+  }
+
+  public getGuessedWords(): string[] {
+    return this.guessedWords;
+  }
+
+  public clearGuessedWords() {
+    this.guessedWords = [];
+  }
+
+  public isGuessedWord(word: string): boolean {
+    return this.guessedWords.includes(word);
+  }
+
+  public resetWords(): void {
+    this.words = this.getRandomWord();
+  }
+
+  public getWords(): string {
+    return this.words;
   }
 }
