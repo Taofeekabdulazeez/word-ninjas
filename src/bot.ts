@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-dotenv.config({ path: ".env.local" });
+dotenv.config();
 import { CronJob } from "cron";
 import { CronExpression, WELCOME_MESSAGE } from "./constants";
 import { Player } from "./models/player";
