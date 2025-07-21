@@ -7,6 +7,7 @@ import { gameService } from "./services/game";
 import { playersService } from "./services/players";
 import { wordsService } from "./services/words";
 import { Bot } from "grammy";
+import { Delay } from "./interfaces";
 
 export const BOT_TOKEN = process.env.BOT_TOKEN!;
 export const ROOM_CHAT_ID = Number(process.env.ROOM_CHAT_ID!);
@@ -19,12 +20,12 @@ const job = new CronJob(
     setTimeout(
       () =>
         bot.api.sendMessage(ROOM_CHAT_ID, "This round will end in 60 seconds."),
-      30 * 1000
+      Delay.THIRTY_SECONDS
     );
     setTimeout(
       () =>
         bot.api.sendMessage(ROOM_CHAT_ID, "This round will end in 30 seconds."),
-      60 * 1000
+      Delay.ONE_MINUTE
     );
 
     setTimeout(() => {
@@ -48,7 +49,7 @@ const job = new CronJob(
         ROOM_CHAT_ID,
         `This round has ended.\nTop players:\n${resultMessage}`
       );
-    }, 90 * 1000);
+    }, Delay.NINETY_SECONDS);
 
     setTimeout(() => {
       bot.api.sendMessage(
@@ -104,10 +105,6 @@ bot.on("message:text", (ctx) => {
   } else {
     ctx.react("👎");
   }
-});
-
-bot.command("help", (ctx) => {
-  console.log("players", playersService.getPlayers());
 });
 
 job.start();

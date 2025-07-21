@@ -1,7 +1,3 @@
-import * as dotenv from "dotenv";
-
-// dotenv.config({ path: ".env.local" });
-
 export const WELCOME_MESSAGE = `👋 Welcome to Anagrabot!
 Send me any word or phrase, and I’ll give you all the possible anagrams.
 Try something like: listen or silent night
