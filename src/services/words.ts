@@ -1,4 +1,4 @@
-export class WordsService {
+class WordsService {
   private guessedWords: string[] = [];
   private words: string = "";
 
@@ -69,3 +69,5 @@ export class WordsService {
     return this.words;
   }
 }
+
+export const wordsService = new WordsService();

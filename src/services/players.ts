@@ -1,6 +1,6 @@
-import { Player } from "./models";
+import { Player } from "../models/player";
 
-export class PlayersService {
+class PlayersService {
   private players: Map<Player["id"], Player> = new Map<Player["id"], Player>();
 
   public getPlayers(): Player[] {
@@ -36,4 +36,16 @@ export class PlayersService {
     if (!player) return;
     player.addPoints(points);
   }
+
+  public clearPlayers(): void {
+    this.players.clear();
+  }
+
+  public getRoundTopPlayers(limit: number = 10): Player[] {
+    return Array.from(this.players.values())
+      .sort((a, b) => b.getPoints() - a.getPoints())
+      .slice(0, limit);
+  }
 }
+
+export const playersService = new PlayersService();
