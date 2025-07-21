@@ -50,6 +50,13 @@ const job = new CronJob(
       );
     }, 90 * 1000);
 
+    setTimeout(() => {
+      bot.api.sendMessage(
+        ROOM_CHAT_ID,
+        "The next round will start in 10 seconds."
+      );
+    }, 100 * 1000);
+
     gameService.setStatus("active");
     wordsService.resetWords();
     wordsService.clearGuessedWords();
