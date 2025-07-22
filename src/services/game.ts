@@ -23,6 +23,10 @@ class GameService {
     playersService.clearPlayers();
   }
 
+  public isRoundActive(): boolean {
+    return this.status === "active";
+  }
+
   public getCurrentRoundWord(): string {
     return wordsService.getWords();
   }

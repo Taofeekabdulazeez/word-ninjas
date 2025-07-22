@@ -1,43 +1,17 @@
 import { Bot, RawApi } from "grammy";
 import { handleStartCommand } from "../handlers/command";
 import { gameService } from "./game";
-import { Player } from "../models/player";
 import { Other } from "grammy/out/core/api";
 import { MessageFormatter } from "../utils/message-formatter";
 import { getFireStreakLevels } from "../utils/helpers";
+import { handleTextMessage } from "../handlers/message";
 
 const ROOM_CHAT_ID = Number(process.env.ROOM_CHAT_ID!);
 export const bot = new Bot(process.env.BOT_TOKEN!);
 
 bot.command("start", handleStartCommand);
 
-bot.on("message:text", (ctx) => {
-  if (gameService.status !== "active") return;
-
-  const userMessage = ctx.message.text.trim();
-  if (
-    userMessage.includes(" ") ||
-    !userMessage?.length ||
-    userMessage.length > gameService.getCurrentRoundWord().length
-  )
-    return;
-
-  const user = ctx.from;
-  gameService.addPlayerToRound(new Player(user.id, user.first_name));
-
-  if (gameService.isGuessedWord(userMessage)) {
-    ctx.react("😢");
-    return;
-  }
-
-  if (gameService.isCurrentRoundWordAnagram(userMessage)) {
-    gameService.addPointsToPlayer(user.id, userMessage.length);
-    ctx.react("👍");
-    gameService.addGuessedWord(userMessage);
-  } else {
-    ctx.react("👎");
-  }
-});
+bot.on("message:text", handleTextMessage);
 
 export function broadcastMessage(
   message: string,
