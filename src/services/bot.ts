@@ -4,6 +4,7 @@ import { gameService } from "./game";
 import { Player } from "../models/player";
 import { Other } from "grammy/out/core/api";
 import { MessageFormatter } from "../utils/message-formatter";
+import { getFireStreakLevels } from "../utils/helpers";
 
 const ROOM_CHAT_ID = Number(process.env.ROOM_CHAT_ID!);
 export const bot = new Bot(process.env.BOT_TOKEN!);
@@ -74,6 +75,20 @@ export function broadcastRoundEnd() {
     MessageFormatter.formatRoundEndMessage(topPlayers),
     { parse_mode: "HTML" }
   );
+
+  const lastRoundWinner = gameService.setLastRoundWinner(topPlayers[0]);
+
+  if (lastRoundWinner && lastRoundWinner.getWinRows() > 1) {
+    bot.api.sendMessage(
+      ROOM_CHAT_ID,
+      `${getFireStreakLevels(
+        lastRoundWinner.getWinRows()
+      )} <a href="tg://user?id=${
+        lastRoundWinner.id
+      }">${lastRoundWinner.getName()}</a> has won ${lastRoundWinner.getWinRows()} rounds in a row!`,
+      { parse_mode: "HTML" }
+    );
+  }
 }
 
 export function broadcastRoundWord() {

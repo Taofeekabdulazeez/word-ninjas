@@ -35,8 +35,15 @@ class GameService {
     return playersService.getRoundTopPlayers();
   }
 
-  public setLastRoundWinner(player: Player): void {
-    this.lastRoundWinner = new RoundWinner(player);
+  public setLastRoundWinner(player: Player): RoundWinner | null {
+    if (!player) return null!;
+
+    if (this.lastRoundWinner?.id !== player.id) {
+      this.lastRoundWinner = new RoundWinner(player);
+      return this.lastRoundWinner;
+    }
+    this.lastRoundWinner.incrementWinRows();
+    return this.lastRoundWinner;
   }
 
   public getLastRoundWinner(): RoundWinner {

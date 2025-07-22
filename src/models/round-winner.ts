@@ -1,7 +1,7 @@
 import { Player } from "./player";
 
 export class RoundWinner extends Player {
-  private win_rows: number = 0;
+  private win_rows: number = 1;
   constructor(player: Player) {
     super(player.id, player.getName());
     this.setPoints(player.getPoints());
