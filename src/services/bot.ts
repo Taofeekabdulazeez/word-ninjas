@@ -75,3 +75,11 @@ export function broadcastRoundEnd() {
     { parse_mode: "HTML" }
   );
 }
+
+export function broadcastRoundWord() {
+  const message = `These words are: <b>${gameService.getCurrentRoundWord()}</b>`;
+
+  bot.api.sendMessage(ROOM_CHAT_ID, message, {
+    parse_mode: "HTML",
+  });
+}
