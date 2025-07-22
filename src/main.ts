@@ -5,7 +5,7 @@ import { bot } from "./services/bot";
 import { gameJob } from "./jobs/game-job";
 
 async function start() {
-  redisClient.connect();
+  // redisClient.connect();
   bot.start();
   gameJob.start();
 }
