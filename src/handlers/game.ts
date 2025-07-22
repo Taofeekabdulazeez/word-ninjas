@@ -1,4 +1,4 @@
-import { Delay } from "../interfaces";
+import { Delay } from "../enums";
 import {
   broadcastMessage,
   broadcastRoundEnd,

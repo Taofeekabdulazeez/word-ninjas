@@ -1,4 +1,4 @@
-import { GameStatus } from "../interfaces";
+import { GameStatus } from "../types";
 import { Player } from "../models/player";
 import { RoundWinner } from "../models/round-winner";
 import { playersService } from "./players";
