@@ -27,7 +27,7 @@ class GameService {
     return this.status === "active";
   }
 
-  public getCurrentRoundWord(): string {
+  public getCurrentRoundWord(): { phrase: string; possibleWords: number } {
     return wordsService.getWords();
   }
 

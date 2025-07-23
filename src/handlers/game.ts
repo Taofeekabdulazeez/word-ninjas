@@ -1,6 +1,7 @@
 import { Delay } from "../enums";
 import {
   broadcastMessage,
+  broadcastPossibleRoundWords,
   broadcastRoundEnd,
   broadcastRoundStart,
   broadcastRoundWord,
@@ -15,6 +16,8 @@ export function handleGamePlay() {
     () => broadcastMessage("⏳ This round will end in 60 seconds"),
     Delay.THIRTY_SECONDS
   );
+
+  setTimeout(broadcastPossibleRoundWords, 38 * 1000);
 
   setTimeout(broadcastRoundWord, 45 * 1000);
 

@@ -46,6 +46,8 @@ export function broadcastRoundStart() {
         disable_notification: true,
       });
     });
+
+  // broadcastPossibleRoundWords();
 }
 
 export function broadcastRoundEnd() {
@@ -74,7 +76,17 @@ export function broadcastRoundEnd() {
 }
 
 export function broadcastRoundWord() {
-  const message = `These words are: <b>${gameService.getCurrentRoundWord()}</b>`;
+  const word = gameService.getCurrentRoundWord();
+  const message = `These words are: <b>${word.phrase}</b>`;
+
+  bot.api.sendMessage(ROOM_CHAT_ID, message, {
+    parse_mode: "HTML",
+  });
+}
+
+export function broadcastPossibleRoundWords() {
+  const word = gameService.getCurrentRoundWord();
+  const message = `There are <b>${word.possibleWords}</b> possible words for this round.`;
 
   bot.api.sendMessage(ROOM_CHAT_ID, message, {
     parse_mode: "HTML",

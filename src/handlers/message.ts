@@ -9,7 +9,7 @@ export function handleTextMessage(ctx: Context) {
   if (
     userMessage?.includes(" ") ||
     !userMessage?.length ||
-    userMessage.length > gameService.getCurrentRoundWord().length
+    userMessage.length > gameService.getCurrentRoundWord().phrase.length
   )
     return;
 

@@ -1,8 +1,14 @@
 import { Player } from "../models/player";
 
 export class MessageFormatter {
-  public static formatRoundStartMessage(words: string): string {
-    return `🚀 Round has started!\nWords are: <b>${words}</b>`;
+  public static formatRoundStartMessage({
+    phrase,
+    possibleWords,
+  }: {
+    phrase: string;
+    possibleWords: number;
+  }): string {
+    return `🚀 Round has started!\nWords are: <b>${phrase}</b>\nThere are <b>${possibleWords}</b> possible words for this round.`;
   }
 
   public static formatRoundEndMessage(players: Player[]): string {
