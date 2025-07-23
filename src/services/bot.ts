@@ -1,5 +1,9 @@
 import { Bot, RawApi } from "grammy";
-import { handleStartCommand } from "../handlers/command";
+import {
+  handleHelpCommand,
+  handleRulesCommand,
+  handleStartCommand,
+} from "../handlers/command";
 import { gameService } from "./game";
 import { Other } from "grammy/out/core/api";
 import { MessageFormatter } from "../utils/message-formatter";
@@ -10,6 +14,10 @@ const ROOM_CHAT_ID = Number(process.env.ROOM_CHAT_ID!);
 export const bot = new Bot(process.env.BOT_TOKEN!);
 
 bot.command("start", handleStartCommand);
+
+bot.command("rules", handleRulesCommand);
+
+bot.command("help", handleHelpCommand);
 
 bot.on("message:text", handleTextMessage);
 
