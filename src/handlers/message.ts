@@ -3,7 +3,6 @@ import { gameService } from "../services/game";
 import { Player } from "../models/player";
 
 export function handleTextMessage(ctx: Context) {
-  console.log("Received text message:", ctx.message?.text);
   if (!gameService.isRoundActive()) return;
   const userMessage = ctx.message?.text?.trim();
 
