@@ -26,6 +26,8 @@ export function handleGamePlay() {
     Delay.ONE_MINUTE
   );
 
+  setTimeout(broadcastPossibleRoundWords, 68 * 1000);
+
   setTimeout(broadcastRoundWord, 75 * 1000);
 
   setTimeout(broadcastRoundEnd, Delay.NINETY_SECONDS);
