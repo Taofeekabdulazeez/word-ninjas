@@ -9,6 +9,7 @@ import { Other } from "grammy/out/core/api";
 import { MessageFormatter } from "../utils/message-formatter";
 import { getFireStreakLevels } from "../utils/helpers";
 import { handleTextMessage } from "../handlers/message";
+import { redisClient } from "../store/redis";
 
 const ROOM_CHAT_ID = Number(process.env.ROOM_CHAT_ID!);
 export const bot = new Bot(process.env.BOT_TOKEN!);
@@ -73,11 +74,16 @@ export function broadcastRoundEnd() {
       { parse_mode: "HTML" }
     );
   }
+
+  // redisClient.set(
+  //   "players",
+  //   JSON.stringify(gameService.getCurrentRoundPlayers())
+  // );
 }
 
 export function broadcastRoundWord() {
   const word = gameService.getCurrentRoundWord();
-  const message = `These words are: <b>${word.phrase}</b>`;
+  const message = `These round words are: <b>${word.phrase}</b>`;
 
   bot.api.sendMessage(ROOM_CHAT_ID, message, {
     parse_mode: "HTML",

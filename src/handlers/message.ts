@@ -1,6 +1,7 @@
 import { Context } from "grammy";
 import { gameService } from "../services/game";
 import { Player } from "../models/player";
+import { redisClient } from "../store/redis";
 
 export function handleTextMessage(ctx: Context) {
   if (!gameService.isRoundActive()) return;
