@@ -6,7 +6,7 @@ import { anagramJob } from "./jobs/anagram-job";
 import { gameJob } from "./jobs/game-job";
 
 async function bootstrap() {
-  redisClient.connect();
+  // redisClient.connect();
   anagramJob.start();
   bot.start();
   gameJob.start();

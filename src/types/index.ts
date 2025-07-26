@@ -1,6 +1,6 @@
 export type GameStatus = "waiting" | "active" | "finished";
 
-export type Word = {
+export type GameWord = {
   phrase: string;
   extraLetters: string[];
   numberOfPossibleWords: number;

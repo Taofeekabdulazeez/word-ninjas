@@ -1,46 +1,49 @@
+import { gameWord } from "../handlers/anagram";
 import { GameStoreWord } from "../interfaces";
 
+export let word = gameWord;
+
 export const GAME_STORE_WORDS: GameStoreWord[] = [
-  { phrase: "vortex mantle", extraLetters: ["s", "e"] },
-  { phrase: "silent harbor", extraLetters: ["r", "x"] },
-  { phrase: "primal echoes", extraLetters: ["d", "y"] },
-  { phrase: "blinded forge", extraLetters: ["q", "u"] },
-  { phrase: "scarlet hymns", extraLetters: ["z", "o"] },
-  { phrase: "frozen chapel", extraLetters: ["g", "n"] },
-  { phrase: "twisted ember", extraLetters: ["b", "k"] },
-  { phrase: "gravel dancer", extraLetters: ["j", "m"] },
-  { phrase: "mirror shades", extraLetters: ["l", "t"] },
-  { phrase: "canvas threat", extraLetters: ["f", "w"] },
-  { phrase: "quantum reeds", extraLetters: ["h", "p"] },
-  { phrase: "broken summit", extraLetters: ["c", "v"] },
-  { phrase: "alpha denser", extraLetters: ["x", "y"] },
-  { phrase: "nocturn angel", extraLetters: ["s", "a"] },
-  { phrase: "silver chant", extraLetters: ["n", "z"] },
-  { phrase: "faded prism", extraLetters: ["u", "r"] },
-  { phrase: "gamma hunter", extraLetters: ["j", "d"] },
-  { phrase: "arcane bolt", extraLetters: ["t", "o"] },
-  { phrase: "sunken rival", extraLetters: ["l", "k"] },
-  { phrase: "epic drought", extraLetters: ["b", "g"] },
-  { phrase: "binary flames", extraLetters: ["m", "e"] },
-  { phrase: "carbon theft", extraLetters: ["c", "h"] },
-  { phrase: "ancient brawl", extraLetters: ["v", "x"] },
-  { phrase: "signal morph", extraLetters: ["z", "q"] },
-  { phrase: "silent chord", extraLetters: ["f", "s"] },
-  { phrase: "valiant merge", extraLetters: ["w", "y"] },
-  { phrase: "muted rockets", extraLetters: ["n", "a"] },
-  { phrase: "hazard inlet", extraLetters: ["d", "p"] },
-  { phrase: "cosmic shaper", extraLetters: ["t", "m"] },
-  { phrase: "hidden quartz", extraLetters: ["b", "u"] },
-  { phrase: "storm ledger", extraLetters: ["o", "c"] },
-  { phrase: "violet march", extraLetters: ["r", "e"] },
-  { phrase: "cinder host", extraLetters: ["l", "j"] },
-  { phrase: "pixel wander", extraLetters: ["g", "s"] },
-  { phrase: "relic photon", extraLetters: ["k", "a"] },
-  { phrase: "sacred flint", extraLetters: ["n", "v"] },
-  { phrase: "void lantern", extraLetters: ["x", "d"] },
-  { phrase: "drift beacon", extraLetters: ["y", "p"] },
-  { phrase: "amber glitch", extraLetters: ["m", "q"] },
-  { phrase: "chaos velvet", extraLetters: ["z", "t"] },
+  { phrase: "vortex mantle", extraLetters: ["i", "u"] },
+  { phrase: "silent harbor", extraLetters: ["e", "y"] },
+  { phrase: "primal echoes", extraLetters: ["u", "a"] },
+  { phrase: "blinded forge", extraLetters: ["a", "y"] },
+  { phrase: "scarlet hymns", extraLetters: ["o", "i"] },
+  { phrase: "frozen chapel", extraLetters: ["u", "a"] },
+  { phrase: "twisted ember", extraLetters: ["o", "u"] },
+  { phrase: "gravel dancer", extraLetters: ["i", "o"] },
+  { phrase: "mirror shades", extraLetters: ["u", "k"] },
+  { phrase: "canvas threat", extraLetters: ["o", "i"] },
+  { phrase: "quantum reeds", extraLetters: ["i", "o"] },
+  { phrase: "broken summit", extraLetters: ["y", "f"] },
+  { phrase: "alpha denser", extraLetters: ["u", "o"] },
+  { phrase: "nocturn angel", extraLetters: ["i", "b"] },
+  { phrase: "silver chant", extraLetters: ["o", "u"] },
+  { phrase: "faded prism", extraLetters: ["o", "u"] },
+  { phrase: "gamma hunter", extraLetters: ["o", "i"] },
+  { phrase: "arcane bolt", extraLetters: ["u", "y"] },
+  { phrase: "sunken rival", extraLetters: ["o", "d"] },
+  { phrase: "epic drought", extraLetters: ["a", "y"] },
+  { phrase: "binary flames", extraLetters: ["u", "o"] },
+  { phrase: "carbon theft", extraLetters: ["u", "i"] },
+  { phrase: "ancient brawl", extraLetters: ["o", "y"] },
+  { phrase: "signal morph", extraLetters: ["u", "e"] },
+  { phrase: "silent chord", extraLetters: ["u", "a"] },
+  { phrase: "valiant merge", extraLetters: ["o", "y"] },
+  { phrase: "muted rockets", extraLetters: ["a", "i"] },
+  { phrase: "hazard inlet", extraLetters: ["o", "u"] },
+  { phrase: "cosmic shaper", extraLetters: ["u", "y"] },
+  { phrase: "hidden quartz", extraLetters: ["o", "y"] },
+  { phrase: "storm ledger", extraLetters: ["a", "i"] },
+  { phrase: "violet march", extraLetters: ["u", "b"] },
+  { phrase: "cinder host", extraLetters: ["u", "a"] },
+  { phrase: "pixel wander", extraLetters: ["o", "y"] },
+  { phrase: "relic photon", extraLetters: ["a", "u"] },
+  { phrase: "sacred flint", extraLetters: ["o", "y"] },
+  { phrase: "void lantern", extraLetters: ["u", "b"] },
+  { phrase: "drift beacon", extraLetters: ["u", "y"] },
+  { phrase: "amber glitch", extraLetters: ["o", "y"] },
+  { phrase: "chaos velvet", extraLetters: ["i", "u"] },
 ];
 
 function getRandomGameStoreWord(): GameStoreWord {
@@ -48,10 +51,10 @@ function getRandomGameStoreWord(): GameStoreWord {
   return GAME_STORE_WORDS[randomIndex];
 }
 
-export function generateAnagramUrl(): string {
+export function generateAnagramUrl(): { url: string; phrase: string } {
   const word = getRandomGameStoreWord();
   const baseUrl = "https://anagram-solver.onrender.com/anagrams";
   const phrase = word.phrase.replace(/\s+/g, "").toLowerCase();
   const extras = word.extraLetters.join(",");
-  return `${baseUrl}/${phrase}?extras=${extras}`;
+  return { url: `${baseUrl}/${phrase}?extras=${extras}`, phrase: word.phrase };
 }

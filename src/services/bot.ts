@@ -34,9 +34,11 @@ export function broadcastMessage(
 
 export function broadcastRoundStart() {
   gameService.resetGame();
-  const botMessage = MessageFormatter.formatRoundStartMessage(
-    gameService.getCurrentRoundWord()
-  );
+  const botMessage = MessageFormatter.formatRoundStartMessage({
+    phrase: gameService.getCurrentRoundWordPhrase(),
+    numberOfPossibleWords: gameService.getCurrentRoundWordPossibleWords(),
+  });
+
   console.log(botMessage);
   bot.api
     .sendMessage(ROOM_CHAT_ID, botMessage, {
@@ -82,8 +84,7 @@ export function broadcastRoundEnd() {
 }
 
 export function broadcastRoundWord() {
-  const word = gameService.getCurrentRoundWord();
-  const message = `These round words are: <b>${word.phrase}</b>`;
+  const message = `These round words are: <b>${gameService.getCurrentRoundWordPhrase()}</b>`;
 
   bot.api.sendMessage(ROOM_CHAT_ID, message, {
     parse_mode: "HTML",
@@ -91,8 +92,18 @@ export function broadcastRoundWord() {
 }
 
 export function broadcastPossibleRoundWords() {
-  const word = gameService.getCurrentRoundWord();
-  const message = `There are <b>${word.possibleWords}</b> possible words for this round.`;
+  const message = `There are <b>${gameService.getCurrentRoundWordPossibleWords()}</b> possible words for this round.`;
+
+  bot.api.sendMessage(ROOM_CHAT_ID, message, {
+    parse_mode: "HTML",
+  });
+}
+
+export function broadcastAddingExtraLetters() {
+  gameService.addExtraLettersToCurrentRoundWord();
+
+  const extraLetters = gameService.getCurrentRoundExtraLetters();
+  const message = `Adding extra letters: <b>${extraLetters.join(" ")}</b>.`;
 
   bot.api.sendMessage(ROOM_CHAT_ID, message, {
     parse_mode: "HTML",

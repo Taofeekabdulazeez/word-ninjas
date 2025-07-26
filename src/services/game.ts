@@ -1,4 +1,4 @@
-import { GameStatus } from "../types";
+import { GameStatus, GameWord } from "../types";
 import { Player } from "../models/player";
 import { RoundWinner } from "../models/round-winner";
 import { playersService } from "./players";
@@ -18,8 +18,7 @@ class GameService {
 
   public resetGame(): void {
     gameService.setStatus("active");
-    wordsService.resetWords();
-    wordsService.clearGuessedWords();
+    wordsService.resetWord();
     playersService.clearPlayers();
   }
 
@@ -27,8 +26,12 @@ class GameService {
     return this.status === "active";
   }
 
-  public getCurrentRoundWord(): { phrase: string; possibleWords: number } {
-    return wordsService.getWords();
+  public getCurrentRoundWordPhrase(): string {
+    return wordsService.getWordPhrase();
+  }
+
+  public getCurrentRoundWordPossibleWords(): number {
+    return wordsService.getNumberOfPossibleWords();
   }
 
   public getCurrentRoundPlayers(): Player[] {
@@ -37,6 +40,14 @@ class GameService {
 
   public getCurrentRoundTopPlayers(): Player[] {
     return playersService.getRoundTopPlayers();
+  }
+
+  public addExtraLettersToCurrentRoundWord(): void {
+    wordsService.addExtraLetters();
+  }
+
+  public getCurrentRoundExtraLetters(): string[] {
+    return wordsService.getExtraLetters();
   }
 
   public setLastRoundWinner(player: Player): RoundWinner | null {
@@ -72,6 +83,14 @@ class GameService {
 
   public isCurrentRoundWordAnagram(word: string): boolean {
     return wordsService.isAnagram(word);
+  }
+
+  public isChatMessage(userMessage: string) {
+    return (
+      userMessage?.includes(" ") ||
+      !userMessage?.length ||
+      userMessage.length > this.getCurrentRoundWordPhrase().length
+    );
   }
 }
 

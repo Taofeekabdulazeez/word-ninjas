@@ -1,5 +1,6 @@
 import { Delay } from "../enums";
 import {
+  broadcastAddingExtraLetters,
   broadcastMessage,
   broadcastPossibleRoundWords,
   broadcastRoundEnd,
@@ -21,14 +22,16 @@ export function handleGamePlay() {
 
   setTimeout(broadcastRoundWord, 45 * 1000);
 
+  setTimeout(broadcastAddingExtraLetters, 55 * 1000);
+
   setTimeout(
     () => broadcastMessage("⏳ This round will end in 30 seconds"),
     Delay.ONE_MINUTE
   );
 
-  setTimeout(broadcastPossibleRoundWords, 68 * 1000);
+  setTimeout(broadcastRoundWord, 68 * 1000);
 
-  setTimeout(broadcastRoundWord, 75 * 1000);
+  setTimeout(broadcastPossibleRoundWords, 75 * 1000);
 
   setTimeout(broadcastRoundEnd, Delay.NINETY_SECONDS);
 
