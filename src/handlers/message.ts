@@ -1,19 +1,17 @@
 import { Context } from "grammy";
 import { gameService } from "../services/game";
 import { Player } from "../models/player";
+import { parsePlayerMessage } from "../validations";
 
 export function handleTextMessage(ctx: Context) {
   if (!gameService.isRoundActive()) return;
-  const userMessage = ctx.message?.text?.trim();
 
-  if (
-    userMessage?.includes(" ") ||
-    !userMessage?.length ||
-    userMessage.length > gameService.getCurrentRoundWord().phrase.length
-  )
-    return;
+  const userMessage = parsePlayerMessage(ctx.message?.text!);
+
+  if (gameService.isChatMessage(userMessage)) return;
 
   const user = ctx.from!;
+
   gameService.addPlayerToRound(new Player(user.id, user.first_name));
 
   if (gameService.isGuessedWord(userMessage)) {
