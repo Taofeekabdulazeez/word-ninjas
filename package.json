@@ -1,14 +1,14 @@
 {
-  "name": "word-masters",
+  "name": "word-ninjas",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/Taofeekabdulazeez/word-masters#readme",
+  "homepage": "https://github.com/Taofeekabdulazeez/word-ninjas#readme",
   "bugs": {
-    "url": "https://github.com/Taofeekabdulazeez/word-masters/issues"
+    "url": "https://github.com/Taofeekabdulazeez/word-ninjas/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Taofeekabdulazeez/word-masters.git"
+    "url": "git+https://github.com/Taofeekabdulazeez/word-ninjas.git"
   },
   "license": "ISC",
   "author": "",
