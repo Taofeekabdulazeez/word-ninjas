@@ -19,6 +19,8 @@
     "start": "npx tsc && node dist/main.js"
   },
   "dependencies": {
+    "@grammyjs/storage-supabase": "^2.5.0",
+    "@supabase/supabase-js": "^2.52.1",
     "axios": "^1.11.0",
     "cron": "^4.3.2",
     "dotenv": "^17.2.0",

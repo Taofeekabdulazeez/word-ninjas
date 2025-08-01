@@ -1,4 +1,4 @@
-import { Bot, RawApi } from "grammy";
+import { Bot, RawApi, session } from "grammy";
 import {
   handleHelpCommand,
   handleRulesCommand,
@@ -9,10 +9,13 @@ import { Other } from "grammy/out/core/api";
 import { MessageFormatter } from "../utils/message-formatter";
 import { getFireStreakLevels } from "../utils/helpers";
 import { handleTextMessage } from "../handlers/message";
-import { redisClient } from "../store/redis";
+import { MyContext } from "../types";
+import { storage } from "../store/supabase";
 
 const ROOM_CHAT_ID = Number(process.env.ROOM_CHAT_ID!);
-export const bot = new Bot(process.env.BOT_TOKEN!);
+export const bot = new Bot<MyContext>(process.env.BOT_TOKEN!);
+
+bot.use(session({ storage }));
 
 bot.command("start", handleStartCommand);
 
@@ -49,8 +52,6 @@ export function broadcastRoundStart() {
         disable_notification: true,
       });
     });
-
-  // broadcastPossibleRoundWords();
 }
 
 export function broadcastRoundEnd() {
@@ -76,11 +77,6 @@ export function broadcastRoundEnd() {
       { parse_mode: "HTML" }
     );
   }
-
-  // redisClient.set(
-  //   "players",
-  //   JSON.stringify(gameService.getCurrentRoundPlayers())
-  // );
 }
 
 export function broadcastRoundWord() {
