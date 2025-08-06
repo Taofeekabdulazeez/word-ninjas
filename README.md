@@ -12,6 +12,24 @@
 
 Here are the steps to getting your development environment working
 
+---
+
+##  Create a Telegram bot.
+
+1. Open Telegram and search for `@BotFather`.
+2. Start a chat and type `/start`.
+3. Type `/newbot` to create a new bot.
+4. Follow the prompts:
+   - Choose a name for your bot.
+   - Choose a unique username ending with `bot` (e.g., `mywordbot`).
+5. You will receive a **bot token**. Save this token as you’ll use it in your **.env** file.
+6. Create a new telegram group.
+7. Add the bot your new telegram group chat and promote the bot as an admin.
+8. Send a message to the group chat.
+9. Visit https://api.telegram.org/bot{YOUR-BOT-TOKEN}/getUpdates in your browser *(Note: Input your bot token!)*
+10. From the JSON response, you can see your **chat id**. Save this chat id as you’ll use it in your **.env** file.
+---
+
 - Create a **.env** file in your root directory
   ```plaintext
      ├── src/
@@ -52,8 +70,24 @@ Here are the steps to getting your development environment working
   ```bash
   $ npm install
   ```
+
+- Note the following changes in your project root directory after installation
+  ```plaintext
+     ├── dist/                # Contains all the compiled JavaScript code 
+     ├── node_modules/        # Contains all the dependencies (libraries and packages) needed.
+     ├── src/
+       │   ├── other folders/
+       |   |........
+       │   └── main.ts/       # Project entry point for boostraping the application
+     ├── .env                 # Contains environment variables
+     ├── .env.example         # Contains environment variables blueprints
+     ├── .gitignore
+     ├── package-lock.json
+     ├── package.json         # Project metadata and dependencies
+     └── tsconfig.json        # TypeScript configuration
+  ```
   
 - Run the below command to start the development server and visit your telegram group chat
   ```bash
-  $ npm run dev
+  $ npm run start
   ```
