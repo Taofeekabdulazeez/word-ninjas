@@ -10,6 +10,15 @@
     "type": "git",
     "url": "git+https://github.com/Taofeekabdulazeez/word-ninjas.git"
   },
+  "keywords": [
+    "words",
+    "scrabble",
+    "anagram",
+    "bot",
+    "telegram",
+    "grammy",
+    "dictionary"
+  ],
   "license": "ISC",
   "author": "",
   "type": "commonjs",
