@@ -89,3 +89,10 @@ Here are the steps to getting your development environment working
   ```bash
   $ npm run start
   ```
+
+## 🪪 License and Copyright
+
+This project is licensed under [MIT LICENSE](./LICENSE)  
+
+Copyright 2025 by [Taofeek Abdulazeez](https://github.com/Taofeekabdulazeez)
+
