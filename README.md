@@ -33,22 +33,22 @@ Here are the steps to getting your development environment working
 - Create a **.env** file in your root directory
   ```plaintext
      ├── src/
-       │   ├── constants/
-       │   ├── enums/
-       │   ├── handlers/      
-       │   └── interafces/    
-       │   ├── jobs/
-       │   ├── models
-       │   ├── services/      
-       │   ├── store
-       │   ├── types
-       │   ├── utils/         
-       │   ├── validations/   
+       │   ├── constants/     # Reusable constant values (e.g Game messages)
+       │   ├── enums/         # TypeScript enums for well-defined sets (e.g Cron Expressions, Seconds Delay)
+       │   ├── handlers/      # Logic to handle different user commands and game interactions (e.g message, start, help commands)
+       │   └── interafces/    # TypeScript interfaces for type-safety
+       │   ├── jobs/          # Background jobs or schedulers (e.g Game rounds restart)
+       │   ├── models         # Entities or Data Model (e.g Player, Round Winner)
+       │   ├── services/      # Logic that handles core game processes (contains bot, game, player and words services)
+       │   ├── store          # Temporary Data storage (Redis Adapter initialization, default data)
+       │   ├── types          # Global or shared TypeScript types
+       │   ├── utils/         # Utility functions (e.g message formatting)  
+       │   ├── validations/   # Input validation logic to keep data clean and safe
        │   └── main.ts/       # Project entry point for boostraping the application
      ├── .env                 # Contains environment variables
-     ├── .env.example         # Contains environment variables blueprints
-     ├── .gitignore
-     ├── package-lock.json
+     ├── .env.example         # Sample environment variable blueprint for development
+     ├── .gitignore           # Specifies which files/folders to ignore in Git
+     ├── package-lock.json    # Auto-generated lockfile for consistent dependency versions
      ├── package.json         # Project metadata and dependencies
      └── tsconfig.json        # TypeScript configuration
   ```
@@ -79,11 +79,8 @@ Here are the steps to getting your development environment working
        │   ├── other folders/
        |   |........
        │   └── main.ts/       # Project entry point for boostraping the application
-     ├── .env                 # Contains environment variables
-     ├── .env.example         # Contains environment variables blueprints
-     ├── .gitignore
-     ├── package-lock.json
-     ├── package.json         # Project metadata and dependencies
+     ├── other root directory files                
+     ├── ...........         
      └── tsconfig.json        # TypeScript configuration
   ```
   
