@@ -9,7 +9,7 @@
 [Word Ninjas](https://t.me/+-fuR_NoIRrVjZTFk) is a multiplayer Telegram group game where players compete to solve anagrams in real-time
 
 
-### Getting started with collaboration
+### Getting started with contribution 
 
 Here are the steps to getting your development environment working
 
