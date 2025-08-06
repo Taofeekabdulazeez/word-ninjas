@@ -1,7 +1,8 @@
 <h1 align="center">Welcome to Word Ninjas</h1>
 
 <p align="center">
-  <a href="https://t.me/+-fuR_NoIRrVjZTFk" target="blank"><img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/8234ad51-61cc-4214-ba57-1198b677723b" />
+  <a href="https://t.me/+-fuR_NoIRrVjZTFk" target="blank"><img width="600" height="600" alt="image" src="https://res.cloudinary.com/dvnys8hkd/image/upload/v1754495913/Anagram_tele_wt3gop.png" />
+
 </a>
 </p>
 
