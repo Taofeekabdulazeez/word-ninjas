@@ -15,8 +15,13 @@ export class MessageFormatter {
   public static formatRoundEndMessage(players: Player[]): string {
     let message = `This round has ended.\n\n`;
 
-    if (!players.length) {
+    if (!players?.length) {
       message += "⚠️ No players participated in this round.";
+      return message;
+    }
+
+    if (!players[0].getPoints()) {
+      message += "⚠️ This round concluded with no winner.";
       return message;
     }
 

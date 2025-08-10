@@ -6,7 +6,7 @@ import { wordsService } from "./words";
 
 class GameService {
   public status: GameStatus = "waiting";
-  private lastRoundWinner: RoundWinner = null!;
+  private lastRoundWinner: RoundWinner | null = null!;
 
   public setStatus(status: GameStatus): void {
     this.status = status;
@@ -50,8 +50,11 @@ class GameService {
     return wordsService.getExtraLetters();
   }
 
-  public setLastRoundWinner(player: Player): RoundWinner | null {
-    if (!player) return null!;
+  public setLastRoundWinner(player: Player | null): RoundWinner | null {
+    if (!player || !player?.getPoints()) {
+      this.lastRoundWinner = null;
+      return null!;
+    }
 
     if (this.lastRoundWinner?.id !== player.id) {
       this.lastRoundWinner = new RoundWinner(player);
@@ -61,7 +64,7 @@ class GameService {
     return this.lastRoundWinner;
   }
 
-  public getLastRoundWinner(): RoundWinner {
+  public getLastRoundWinner(): RoundWinner | null {
     return this.lastRoundWinner;
   }
 
