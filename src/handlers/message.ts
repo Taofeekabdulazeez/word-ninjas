@@ -3,7 +3,10 @@ import { gameService } from "../services/game";
 import { Player } from "../models/player";
 import { parsePlayerMessage } from "../validations";
 
+const ROOM_CHAT_ID = Number(process.env.ROOM_CHAT_ID!);
+
 export function handleTextMessage(ctx: Context) {
+  if (ctx.chatId !== ROOM_CHAT_ID) return;
   if (!gameService.isRoundActive()) return;
 
   const userMessage = parsePlayerMessage(ctx.message?.text!);
